@@ -1,0 +1,10 @@
+.singleCampaign{
+    display: flex;
+    width: 100%;
+}
+.campaignField{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 12.5%
+}
