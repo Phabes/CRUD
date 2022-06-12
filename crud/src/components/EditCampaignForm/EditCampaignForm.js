@@ -14,8 +14,10 @@ class EditCampaignForm extends Component {
             status: true,
             town: "Cracov",
             radius: 0,
-            err: "",
-            availableTowns: ["Cracov", "Warsaw", "Paris"]
+            msg: "",
+            color: "#ad0000",
+            availableTowns: ["Cracov", "Warsaw", "Paris"],
+            emeralds: 0
         }
     }
 
@@ -31,13 +33,11 @@ class EditCampaignForm extends Component {
         fetch('http://192.168.55.111:5555/getCampaign', requestOptions)
             .then(response => response.json())
             .then(data => {
-                if (data.action == "found")
-                    this.setState({ ...data.campaign })
+                if (data.action == "found") {
+                    this.setState(data.campaign)
+                    this.setState({ emeralds: data.emeralds })
+                }
             });
-    }
-
-    deduceCampaignFund = () => {
-        return 100
     }
 
     updateCampaignName = (e) => {
@@ -60,7 +60,7 @@ class EditCampaignForm extends Component {
 
     updateCampaignFund = (e) => {
         this.setState({
-            fund: e.target.value
+            fund: Math.round(e.target.value * 100) / 100
         })
     }
 
@@ -87,8 +87,10 @@ class EditCampaignForm extends Component {
         const productIndex = params[params.length - 3]
         const index = params[params.length - 2]
         let campaign = { ...this.state }
-        delete campaign.err
+        delete campaign.msg
+        delete campaign.color
         delete campaign.availableTowns
+        delete campaign.emeralds
         const requestOptions = {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
@@ -110,61 +112,78 @@ class EditCampaignForm extends Component {
     }
 
     handleForm = () => {
-        let err = ""
+        let err = "Campaign successfully edited"
+        let color = "#ad0000"
         if (this.state.name == "")
             err = "Campign Name Required"
         else if (this.state.keywords == "")
             err = "Keywords Required"
-        else if (this.state.bid == "")
-            err = "Bid Required"
-        else if (this.state.fund == "")
+        else if (this.state.bid < 1000)
+            err = "Bid At Least 1000"
+        else if (this.state.fund < 0)
             err = "Campaigns Fund Required"
         else if (this.state.town == null)
             err = "Town Required"
-        else if (this.state.radius == null)
+        else if (this.state.radius < 0)
             err = "Radius Required"
-        if (err == "")
+        if (err == "Campaign successfully edited") {
+            color = "#2cdf1c"
             this.edit()
+        }
         this.setState({
-            err: err
+            msg: err,
+            color: color
         })
     }
 
     render() {
+        let emeraldsLeft = this.state.emeralds - this.state.fund
         return (
-            <div>
-                <Link to={`${this.redirectToCampaigns()}`}>Show all product campaigns</Link>
-                <div id="newCampaignForm">
-                    <div className='formRow'>
-                        <input type="text" value={this.state.name} onChange={this.updateCampaignName} required={true} />
+            <div id='content'>
+                <div id='centered'>
+                    <div id='title'>
+                        <div className='titleElement'>Editor</div>
+                        <Link className='linkButton titleElement' to={`${this.redirectToCampaigns()}`}>Product Campaigns</Link>
                     </div>
-                    <div className='formRow'>
-                        <input type="text" value={this.state.keywords} onChange={this.updateKeywords} required={true} />
-                    </div>
-                    <div className='formRow'>
-                        <input type="number" value={this.state.bid} onChange={this.updateBid} min={1000} required={true} />
-                    </div>
-                    <div className='formRow'>
-                        <input type="number" value={this.state.fund} onChange={this.updateCampaignFund} required={true} />
-                    </div>
-                    <div className='formRow'>
-                        <input type="checkbox" checked={this.state.status} min={1000} onChange={this.updateStatus} />
-                    </div>
-                    <div className='formRow'>
-                        <select value={this.state.town} onChange={this.updateTown}>
-                            {this.state.availableTowns.map((town) => {
-                                return <option key={`option_${town}`} value={town}>{town}</option>
-                            })}
-                        </select>
-                    </div>
-                    <div className='formRow'>
-                        <input type="number" value={this.state.radius} onChange={this.updateRadius} required={true} />
-                    </div>
-                    <div className='formRow'>
-                        <button onClick={this.handleForm}>Edit Campaign</button>
-                    </div>
-                    <div className='formRow'>
-                        <div id="error">{this.state.err}</div>
+                    <div id="newCampaignForm">
+                        <div className='formRow'>
+                            <div className='rowName'>Name</div>
+                            <input type="text" value={this.state.name} onChange={this.updateCampaignName} required={true} />
+                        </div>
+                        <div className='formRow'>
+                            <div className='rowName'>Keywords</div>
+                            <input type="text" value={this.state.keywords} onChange={this.updateKeywords} required={true} />
+                        </div>
+                        <div className='formRow'>
+                            <div className='rowName'>Bid</div>
+                            <input type="number" value={this.state.bid} onChange={this.updateBid} min={1000} required={true} />
+                        </div>
+                        <div className='formRow'>
+                            <div className='rowName'><div>Fund</div><div>[{emeraldsLeft} $]</div></div>
+                            <input type="number" value={this.state.fund} onChange={this.updateCampaignFund} required={true} />
+                        </div>
+                        <div className='formRow'>
+                            <div className='rowName'>Status</div>
+                            <input type="checkbox" checked={this.state.status} min={1000} onChange={this.updateStatus} />
+                        </div>
+                        <div className='formRow'>
+                            <div className='rowName'>Town</div>
+                            <select value={this.state.town} onChange={this.updateTown}>
+                                {this.state.availableTowns.map((town) => {
+                                    return <option key={`option_${town}`} value={town}>{town}</option>
+                                })}
+                            </select>
+                        </div>
+                        <div className='formRow'>
+                            <div className='rowName'>Radius [km]</div>
+                            <input type="number" value={this.state.radius} onChange={this.updateRadius} required={true} />
+                        </div>
+                        <div className='formRow'>
+                            <div className='submitButton' onClick={this.handleForm}>Edit Campaign</div>
+                        </div>
+                        <div className='formRow'>
+                            <div style={{ color: this.state.color }} id="msg">{this.state.msg}</div>
+                        </div>
                     </div>
                 </div>
             </div>

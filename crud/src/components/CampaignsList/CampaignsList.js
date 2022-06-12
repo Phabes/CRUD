@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { Link } from "react-router-dom";
 import PropTypes from 'prop-types';
 import CampaignElement from '../CampaignElement/CampaignElement';
+import './CampaignsList.css'
 
 class CampaignsList extends Component {
     constructor(props) {
@@ -38,21 +39,22 @@ class CampaignsList extends Component {
             campaigns.push(<CampaignElement key={`campaign_${index}`} campaign={campaign} index={index} refreshCampaigns={this.getCampaigns} />)
         });
         return (
-            <div>
-                CAMPAIGNS
-                <Link to={`${window.location.pathname}/create`}>Create Campaign</Link>
-                <div className='singleCampaign'>
-                    <div className='campaignField'>Name</div>
-                    <div className='campaignField'>Keywords</div>
-                    <div className='campaignField'>Bid</div>
-                    <div className='campaignField'>Fund</div>
-                    <div className='campaignField'>Status</div>
-                    <div className='campaignField'>Town</div>
-                    <div className='campaignField'>Radius</div>
-                    <div className='campaignField'>Remove</div>
-                    <div className='campaignField'>Update</div>
+            <div id='content'>
+                <div id='centered'>
+                    <div id='title'><div className='titleElement'>Your Campaigns</div><Link className='linkButton titleElement' to={`${window.location.pathname}/create`}>Create Campaign</Link></div>
+                    <div className='singleCampaign headers'>
+                        <div className='campaignField specialField'>Name</div>
+                        <div className='campaignField specialField hide'>Keywords</div>
+                        <div className='campaignField hide'>Bid</div>
+                        <div className='campaignField hide'>Fund</div>
+                        <div className='campaignField hide'>Status</div>
+                        <div className='campaignField hide'>Town</div>
+                        <div className='campaignField specialField hide'>Radius [km]</div>
+                        <div className='campaignField'>Remove</div>
+                        <div className='campaignField'>Update</div>
+                    </div>
+                    {campaigns}
                 </div>
-                {campaigns}
             </div>
         );
     }

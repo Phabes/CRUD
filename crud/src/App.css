@@ -1,0 +1,29 @@
+#content{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+#centered{
+    width: 70%;
+    margin: 20px 0;
+    background-color: #4a4b4d;
+}
+
+#title{
+    padding: 20px;
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.titleElement{
+    padding: 10px;
+}
+
+@media (max-width: 600px){
+    #centered{
+        width: 90%;
+    }
+}

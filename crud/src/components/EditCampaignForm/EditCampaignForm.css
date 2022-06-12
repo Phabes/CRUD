@@ -1,0 +1,76 @@
+#content{
+    width: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+}
+
+#centered{
+    width: 70%;
+    margin: 20px 0;
+    background-color: #4a4b4d;
+}
+
+#title{
+    padding: 20px;
+    font-size: 30px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.titleElement{
+    padding: 10px;
+}
+
+#newCampaignForm{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.formRow{
+    width: 50%;
+    min-height: 50px;
+    display: flex;
+    border-top: 1px solid black;
+    box-sizing: border-box;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input{
+    border-radius: 10px;
+}
+
+.submitButton{
+    background-color: #08bd68;
+    padding: 10px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.submitButton:hover{
+    background-color: #089654;
+}
+
+#msg{
+    font-weight: bold;
+    font-size: 24px;
+    display: flex;
+    flex: 1;
+    justify-content: center;
+}
+
+@media (max-width: 800px){
+    .formRow{
+        width: 70%;
+    }
+}
+
+@media (max-width: 600px){
+    #centered{
+        width: 90%;
+    }
+}

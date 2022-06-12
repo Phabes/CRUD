@@ -8,11 +8,15 @@ class ProductLink extends Component {
         super(props)
     }
 
+    capitalFirstLetter = (str) => {
+        return str.charAt(0).toUpperCase() + str.slice(1);
+    }
+
     render() {
         return (
             <Link className='singleProduct'
                 to={`/products/${this.props.product.index}`}
-            >{this.props.product.name}</Link>
+            >{this.capitalFirstLetter(this.props.product.name)}</Link>
         );
     }
 }

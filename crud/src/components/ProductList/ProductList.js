@@ -13,7 +13,7 @@ class ProductList extends Component {
             products.push(<ProductLink key={`product${index}`} product={product} />)
         });
         return (
-            <div id='productList' >
+            <div id='productsList' >
                 {products}
             </div>
         );

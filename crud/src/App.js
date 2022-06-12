@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import ProductList from './components/ProductList/ProductList';
+import './App.css'
 
 class App extends Component {
   constructor(props) {
@@ -24,9 +25,11 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        PRODUCTS
-        <ProductList products={this.state.products} />
+      <div id='content'>
+        <div id='centered'>
+          <div id='title'><div className='titleElement'>Your products</div></div>
+          <ProductList products={this.state.products} />
+        </div>
       </div>
     );
   }

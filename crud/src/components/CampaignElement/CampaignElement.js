@@ -27,15 +27,15 @@ class CampaignElement extends Component {
     render() {
         return (
             <div className='singleCampaign'>
-                <div className='campaignField'>{this.props.campaign.name}</div>
-                <div className='campaignField'>{this.props.campaign.keywords}</div>
-                <div className='campaignField'>{this.props.campaign.bid}</div>
-                <div className='campaignField'>{this.props.campaign.fund}</div>
-                <div className='campaignField'>{this.props.campaign.status.toString()}</div>
-                <div className='campaignField'>{this.props.campaign.town}</div>
-                <div className='campaignField'>{this.props.campaign.radius}</div>
-                <div className='campaignField'><button onClick={this.deleteCampaign}>DELETE</button></div>
-                <div className='campaignField'><Link to={window.location.pathname + "/" + this.props.index + "/update"}>EDIT</Link></div>
+                <div className='campaignField specialField'>{this.props.campaign.name}</div>
+                <div className='campaignField specialField hide'>{this.props.campaign.keywords}</div>
+                <div className='campaignField hide'>{this.props.campaign.bid}</div>
+                <div className='campaignField hide'>{this.props.campaign.fund}</div>
+                <div className='campaignField hide'>{this.props.campaign.status.toString()}</div>
+                <div className='campaignField hide'>{this.props.campaign.town}</div>
+                <div className='campaignField specialField hide'>{this.props.campaign.radius}</div>
+                <div className='campaignField'><div className='campaignButton' onClick={this.deleteCampaign}>DELETE</div></div>
+                <div className='campaignField'><Link className='campaignButton' to={window.location.pathname + "/" + this.props.index + "/update"}>EDIT</Link></div>
             </div>
         );
     }

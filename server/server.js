@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require("cors");
 const app = express()
-const port = 5555
+const PORT = 5555
 
 app.use(cors({
     credentials: true,
@@ -10,6 +10,7 @@ app.use(cors({
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+let fund = 236725
 let products = [
     {
         name: "headphones",
@@ -19,22 +20,22 @@ let products = [
         name: "microphone",
         campaigns: [
             {
-                "name": "adasdasdasd",
-                "keywords": "start keywords",
+                "name": "Camp1",
+                "keywords": "camp 1",
                 "bid": 1000,
-                "fund": "96",
+                "fund": 12306,
                 "status": true,
                 "town": "Paris",
                 "radius": 10
             },
             {
-                "name": "qw",
-                "keywords": "start keywords",
+                "name": "Camp2",
+                "keywords": "2 camp",
                 "bid": 1000,
-                "fund": "100",
+                "fund": 1000,
                 "status": false,
                 "town": "Warsaw",
-                "radius": "13"
+                "radius": 13
             }
         ]
     },
@@ -47,6 +48,16 @@ let products = [
         campaigns: []
     }
 ]
+
+function calculateEmeralds() {
+    let total = fund
+    products.forEach(product => {
+        product.campaigns.forEach(campaign => {
+            total -= campaign.fund
+        });
+    });
+    return total
+}
 
 app.post('/getProducts', (req, res) => {
     let productNames = []
@@ -78,7 +89,11 @@ app.post('/getCampaigns', (req, res) => {
 
 app.post('/getCampaign', (req, res) => {
     const { productIndex, index } = req.body
-    res.status(200).json({ action: "found", campaign: products[productIndex].campaigns[index] })
+    res.status(200).json({ action: "found", campaign: products[productIndex].campaigns[index], emeralds: calculateEmeralds() })
+})
+
+app.post('/getEmeralds', (req, res) => {
+    res.status(200).json({ emeralds: calculateEmeralds() })
 })
 
 app.delete('/deleteCampaign', (req, res) => {
@@ -87,6 +102,6 @@ app.delete('/deleteCampaign', (req, res) => {
     res.status(200).json({ action: "deleted" })
 })
 
-app.listen(port, () => {
-    console.log(`Example app listening on port ${port}`)
+app.listen(process.env.PORT || PORT, () => {
+    console.log(`Example app listening on port ${PORT}`)
 })

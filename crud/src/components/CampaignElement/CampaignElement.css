@@ -1,10 +1,15 @@
-.singleCampaign{
-    display: flex;
-    width: 100%;
-}
-.campaignField{
+.campaignButton{
+    text-decoration: none;
+    width: 80%;
+    background-color: #257379;
+    color: #ffffff;
+    padding: 5px;
     display: flex;
     justify-content: center;
     align-items: center;
-    width: 12.5%
+    cursor: pointer;
+}
+
+.campaignButton:hover{
+    background-color: #2a9299;
 }
