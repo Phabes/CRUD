@@ -16,7 +16,8 @@ class CampaignElement extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ productIndex: productIndex, index: this.props.index })
         };
-        fetch('http://192.168.55.111:5555/deleteCampaign', requestOptions)
+        // fetch('http://192.168.55.111:5555/deleteCampaign',
+        fetch('https://campaigns-crud.herokuapp.com/deleteCampaign', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.action == "deleted")

@@ -24,7 +24,8 @@ class CampaignsList extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ index: index })
         };
-        fetch('http://192.168.55.111:5555/getCampaigns', requestOptions)
+        // fetch('http://192.168.55.111:5555/getCampaigns', requestOptions)
+        fetch('https://campaigns-crud.herokuapp.com/getCampaigns', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.action == "found") {

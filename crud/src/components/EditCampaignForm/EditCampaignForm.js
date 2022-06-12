@@ -30,7 +30,8 @@ class EditCampaignForm extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ productIndex: productIndex, index: index })
         };
-        fetch('http://192.168.55.111:5555/getCampaign', requestOptions)
+        // fetch('http://192.168.55.111:5555/getCampaign', requestOptions)
+        fetch('https://campaigns-crud.herokuapp.com/getCampaign', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.action == "found") {
@@ -96,7 +97,8 @@ class EditCampaignForm extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ campaign: campaign, productIndex: productIndex, index: index })
         };
-        fetch('http://192.168.55.111:5555/editCampaign', requestOptions)
+        // fetch('http://192.168.55.111:5555/editCampaign', requestOptions)
+        fetch('https://campaigns-crud.herokuapp.com/editCampaign', requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data.action)

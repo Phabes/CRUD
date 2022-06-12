@@ -16,7 +16,8 @@ class App extends Component {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' }
     };
-    fetch('http://192.168.55.111:5555/getProducts', requestOptions)
+    // fetch('http://192.168.55.111:5555/getProducts', 
+    fetch('https://campaigns-crud.herokuapp.com/getProducts', requestOptions)
       .then(response => response.json())
       .then(data => {
         this.setState({ products: data })

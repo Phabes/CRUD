@@ -28,7 +28,8 @@ class CampaignForm extends Component {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' }
         };
-        fetch('http://192.168.55.111:5555/getEmeralds', requestOptions)
+        // fetch('http://192.168.55.111:5555/getEmeralds', requestOptions)
+        fetch('https://campaigns-crud.herokuapp.com/getEmeralds', requestOptions)
             .then(response => response.json())
             .then(data => {
                 this.setState({ emeralds: data.emeralds }, () => this.deduceCampaignFund())
@@ -97,7 +98,8 @@ class CampaignForm extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ campaign: campaign, index: index })
         };
-        fetch('http://192.168.55.111:5555/addCampaign', requestOptions)
+        // fetch('http://192.168.55.111:5555/addCampaign', requestOptions)
+        fetch('https://campaigns-crud.herokuapp.com/addCampaign', requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data.action)

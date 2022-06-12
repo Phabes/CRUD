@@ -3,10 +3,11 @@ const cors = require("cors");
 const app = express()
 const PORT = 5555
 
-app.use(cors({
-    credentials: true,
-    origin: "http://192.168.55.111:3000"
-}))
+app.use(cors())
+// app.use(cors({
+//     credentials: true,
+//     origin: "http://192.168.55.111:3000"
+// }))
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
