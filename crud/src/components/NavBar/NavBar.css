@@ -23,6 +23,7 @@ nav{
     border-radius: 20px;
     color: #ffffff;
     transition: all 1s;
+    user-select: none;
 }
 
 .navLink:hover{

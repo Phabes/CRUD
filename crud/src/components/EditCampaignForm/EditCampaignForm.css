@@ -22,6 +22,10 @@
     padding: 10px;
 }
 
+.linkButton{
+    user-select: none;
+}
+
 #newCampaignForm{
     width: 100%;
     display: flex;
@@ -30,7 +34,7 @@
 }
 
 .formRow{
-    width: 50%;
+    width: 60%;
     min-height: 50px;
     display: flex;
     border-top: 1px solid black;
@@ -49,6 +53,7 @@ input{
     border-radius: 10px;
     cursor: pointer;
     transition: all .5s;
+    user-select: none;
 }
 
 .submitButton:hover{
@@ -63,13 +68,19 @@ input{
     justify-content: center;
 }
 
-@media (max-width: 800px){
+@media (max-width: 900px){
     .formRow{
-        width: 70%;
+        width: 80%;
     }
 }
 
 @media (max-width: 600px){
+    .formRow{
+        width: 90%;
+    }
+}
+
+@media (max-width: 400px){    
     #centered{
         width: 90%;
     }
