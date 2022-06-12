@@ -45,6 +45,17 @@
 
 input{
     border-radius: 10px;
+    height: 20px;
+}
+
+input[type="checkbox"]{
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+select{
+    width: 100px;
 }
 
 .submitButton{

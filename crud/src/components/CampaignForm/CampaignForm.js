@@ -117,7 +117,7 @@ class CampaignForm extends Component {
 
     handleForm = () => {
         let err = "Campaign successfully added"
-        let color = "#ad0000"
+        let color = "#eb3423"
         if (this.state.name === "")
             err = "Campign Name Required"
         else if (this.state.keywords === "")

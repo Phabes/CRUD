@@ -115,7 +115,7 @@ class EditCampaignForm extends Component {
 
     handleForm = () => {
         let err = "Campaign successfully edited"
-        let color = "#ad0000"
+        let color = "#eb3423"
         if (this.state.name == "")
             err = "Campign Name Required"
         else if (this.state.keywords == "")
