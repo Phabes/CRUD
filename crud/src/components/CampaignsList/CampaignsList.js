@@ -25,7 +25,8 @@ class CampaignsList extends Component {
             body: JSON.stringify({ index: index })
         };
         // fetch('http://192.168.55.111:5555/getCampaigns', requestOptions)
-        fetch('https://campaigns-crud.herokuapp.com/getCampaigns', requestOptions)
+        // fetch('https://campaigns-crud.herokuapp.com/getCampaigns', requestOptions)
+        fetch('https://phabes-campaigns-crud.onrender.com/getCampaigns', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.action == "found") {

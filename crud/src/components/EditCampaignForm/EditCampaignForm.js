@@ -31,7 +31,8 @@ class EditCampaignForm extends Component {
             body: JSON.stringify({ productIndex: productIndex, index: index })
         };
         // fetch('http://192.168.55.111:5555/getCampaign', requestOptions)
-        fetch('https://campaigns-crud.herokuapp.com/getCampaign', requestOptions)
+        // fetch('https://campaigns-crud.herokuapp.com/getCampaign', requestOptions)
+        fetch('https://phabes-campaigns-crud.onrender.com/getCampaign', requestOptions)
             .then(response => response.json())
             .then(data => {
                 if (data.action == "found") {
@@ -98,7 +99,8 @@ class EditCampaignForm extends Component {
             body: JSON.stringify({ campaign: campaign, productIndex: productIndex, index: index })
         };
         // fetch('http://192.168.55.111:5555/editCampaign', requestOptions)
-        fetch('https://campaigns-crud.herokuapp.com/editCampaign', requestOptions)
+        // fetch('https://campaigns-crud.herokuapp.com/editCampaign', requestOptions)
+        fetch('https://phabes-campaigns-crud.onrender.com/editCampaign', requestOptions)
             .then(response => response.json())
             .then(data => {
                 console.log(data.action)

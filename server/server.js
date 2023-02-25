@@ -57,7 +57,7 @@ function calculateEmeralds() {
             total -= campaign.fund
         });
     });
-    return total
+    return Math.round(total * 100) / 100
 }
 
 app.post('/getProducts', (req, res) => {
