@@ -145,7 +145,7 @@ class CampaignForm extends Component {
     }
 
     render() {
-        let emeraldsLeft = this.state.emeralds - this.state.fund
+        let emeraldsLeft = Math.round((this.state.emeralds - this.state.fund) * 100) / 100
         return (
             <div id='content'>
                 <div id='centered'>
