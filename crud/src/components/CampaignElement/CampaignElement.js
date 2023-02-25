@@ -16,7 +16,7 @@ class CampaignElement extends Component {
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({ productIndex: productIndex, index: this.props.index })
         };
-        // fetch('http://192.168.55.111:5555/deleteCampaign',
+        // fetch('http://192.168.55.111:5555/deleteCampaign', requestOptions)
         // fetch('https://campaigns-crud.herokuapp.com/deleteCampaign', requestOptions)
         fetch('https://phabes-campaigns-crud.onrender.com/deleteCampaign', requestOptions)
             .then(response => response.json())
